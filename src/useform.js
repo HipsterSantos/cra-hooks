@@ -11,20 +11,3 @@ export const useForm = (initialValues) =>{
     ]
 }
 
-const useForm2 = (initValues) =>{
-    const [value,setValue] = useState(initValues);
-    return [
-        value,
-        e =>{
-            setValues({
-                ...values,
-                [e.target.name]:[e.target.value]
-            })
-        }
-    ]
-}
-
-let [value,handle] = userForm(['anime',true]);
-function handle(){
-    console.log('hey')
-}

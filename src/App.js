@@ -1,11 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react';
+import { useState , useEffect} from 'react';
 import { useForm } from './useform';
 
 function App() {
 const [email,setEmail] = useState("");
 const [form, handleForm] =  useForm({email:'',password:''})
+
+
+  useEffect(()=>{
+    console.log('updating')
+  })
+
   return (
     <div className="App">
       <header className="App-header">
