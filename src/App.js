@@ -5,7 +5,7 @@ import { useForm } from './useform';
 import { Hello } from './Hello';
 
 function App() {
-const [email,setEmail] = useState("");
+
 const [form, handleForm] =  useForm({email:'',password:''})
 const [showHello,setShowHello] = useState(true);
 
@@ -13,10 +13,12 @@ const [showHello,setShowHello] = useState(true);
   useEffect(()=>{
     console.log('updating')
     setShowHello(()=>(!showHello))
-  },[form.email , form.password])
-
-  return (
     
+  },[form.email , form.password])
+  
+  
+  return (
+  
     <div className="App">
     
       { showHello && <Hello/>}
@@ -29,6 +31,7 @@ const [showHello,setShowHello] = useState(true);
       <h1>output </h1>
       <p>{form.email}</p>and <p>{form.password}</p>
       </header>
+      
     </div>
   );
 }
