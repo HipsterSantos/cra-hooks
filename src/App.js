@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState , useEffect} from 'react';
+import { useState , useEffect, useRef} from 'react';
 import { useForm } from './useform';
 import { Hello } from './Hello';
 import {useFetch} from './hooks/useFetch';
@@ -9,7 +9,7 @@ function App() {
 const [form, handleForm] =  useForm({email:'',password:''})
 const [showHello,setShowHello] = useState(true);
 const {data,loading}  = useFectch('');
-
+const inputRef = useRef();
 
   useEffect(()=>{
     console.log('updating')
@@ -24,7 +24,8 @@ const {data,loading}  = useFectch('');
     
       { showHello && <Hello/>}
 
-      <header className="App-header">
+      <header ref={inputRef} className="App-header">
+        <button onClick={console.log(inputRef.current)}></button>
       <h3>Testing react hooks</h3>
       <input type="email" name="email" value={form.email} onChange={handleForm}/>
       <input type="password" name="password" value={form.password} onChange={handleForm}/>
