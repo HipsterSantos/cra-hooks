@@ -3,11 +3,12 @@ import './App.css';
 import { useState , useEffect} from 'react';
 import { useForm } from './useform';
 import { Hello } from './Hello';
-
+import {useFetch} from './hooks/useFetch';
 function App() {
 
 const [form, handleForm] =  useForm({email:'',password:''})
 const [showHello,setShowHello] = useState(true);
+const {data,loading}  = useFectch('');
 
 
   useEffect(()=>{

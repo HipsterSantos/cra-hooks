@@ -4,7 +4,7 @@ const useFetch = (url)=>{
 const [state, setState] = useState({data:null,loading:false});
 
   useEffect(()=>{
-    setState({data:null , loading:true});
+    setState(state=>({data:state.data , loading:state.loading}));
     fetch(url)
       .then(x = x.json())
       .then(data=>setState({data,loading:true}))
