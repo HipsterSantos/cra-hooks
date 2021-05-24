@@ -9,6 +9,7 @@ const inputRef = useRef();
 const [count,setCount] = useState(10);
 const [value, handleForm] = useForm({email:'',password:''});
 const [data,loading] = useFetch(`http://numbersapi.com/${count}`);
+const focusEmail = useRef(0);
 useEffect(()=>{
   console.log('hey I rendered')
   return ()=>{
@@ -17,12 +18,13 @@ useEffect(()=>{
 return (  
     <div className="App-header">
       <h2>Hey we're here just to take a look to react hooks</h2>
-      <button onClick={()=>setCount(c=>c+1) }>
+      <button onClick={()=>setCount(c=>c+1)}>
         +
       </button>
+      <button type="button" onClick={focusEmail.focus}>Focus</button>
       <h3>Count {count}</h3>
       <div>
-        <input type="text"  name="email" placeholder="your name" 
+        <input type="text" ref={focusEmail} name="email" placeholder="your name" 
         onChange={handleForm}/>
         <input type="password"  name="password" placeholder="your password"
          onChange={handleForm}/>
