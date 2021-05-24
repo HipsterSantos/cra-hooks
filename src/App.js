@@ -2,27 +2,35 @@ import logo from './logo.svg';
 import './App.css';
 import { useState , useEffect, useRef,useLayoutEffect} from 'react';
 import { useForm } from './hooks/useForm';
-
+import { useFetch }from './hooks/useFetch';
 
 function App() {
 const inputRef = useRef();
-const [{count,count2},setCount] = useState({count:10,count2:2});
+const [count,setCount] = useState(10);
 const [value, handleForm] = useForm({email:'',password:''});
-console.log(count);
+const [data,loading] = useFetch(`http://numbersapi.com/${count}`);
+useEffect(()=>{
+  console.log('hey I rendered')
+  return ()=>{
+  }
+},[]);
 return (  
     <div className="App-header">
       <h2>Hey we're here just to take a look to react hooks</h2>
-      <button onClick={()=>setCount(c=>({count:c+1,count2}))}>
+      <button onClick={()=>setCount(c=>c+1) }>
         +
       </button>
       <h3>Count {count}</h3>
       <div>
-        <input type="text" value={value.email} placeholder="your name" 
+        <input type="text"  name="email" placeholder="your name" 
         onChange={handleForm}/>
-        <input type="password" value={value.password} placeholder="your password"
+        <input type="password"  name="password" placeholder="your password"
          onChange={handleForm}/>
       </div>
       <p>{value.name}</p> and <p>{value.email}</p>
+      <div>
+        <h3>{loading?'...':data}</h3>
+      </div>
     </div>
   );
 }

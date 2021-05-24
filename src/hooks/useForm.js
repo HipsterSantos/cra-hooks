@@ -1,9 +1,9 @@
 import {useState} from 'react'; 
 
-export const useForm = (intialValue) =>{
+export const useForm = (initialValue) =>{
     
     const [values,setValues]  = useState(initialValue); 
-  
+    const {email,password} = values;
     return [
         values,
         e=>{
