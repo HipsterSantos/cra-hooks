@@ -1,28 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState , useEffect, useRef,useLayoutEffect} from 'react';
-import { useForm } from './useform';
-import { Hello } from './Hello';
-import {useFetch} from './hooks/useFetch';
-import Hello from './hooks/Hello';
+import { useForm } from './hooks/useForm';
+
+
 function App() {
-
-const [form, handleForm] =  useForm({email:'',password:''})
-const [showHello,setShowHello] = useState(true);
-const {data,loading}  = useFectch('');
 const inputRef = useRef();
-
-  useEffect(()=>{
-    console.log('updating')
-    setShowHello(()=>(!showHello))
-    
-  },[form.email , form.password])
-  
-  
-  return (
-  
-    <div className="App">
-        <Hello/>
+const [{count,count2},setCount] = useState({count:10,count2:2});
+const [value, handleForm] = useForm({email:'',password:''});
+console.log(count);
+return (  
+    <div className="App-header">
+      <h2>Hey we're here just to take a look to react hooks</h2>
+      <button onClick={()=>setCount(c=>({count:c+1,count2}))}>
+        +
+      </button>
+      <h3>Count {count}</h3>
+      <div>
+        <input type="text" value={value.email} placeholder="your name" 
+        onChange={handleForm}/>
+        <input type="password" value={value.password} placeholder="your password"
+         onChange={handleForm}/>
+      </div>
+      <p>{value.name}</p> and <p>{value.email}</p>
     </div>
   );
 }
