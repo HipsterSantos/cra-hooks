@@ -1,12 +1,9 @@
-import react , {useEffect,useState} from 'react'; 
+import React , {useEffect,useState} from 'react'; 
 
-export const Hello = ()=>{
-    useEffect(()=>{
-        console.log("Rendered")
-        return () =>{
-            console.log("Unmounted unrendred")
-        }
-    },[])
-
-    return <div>Hey Hello</div>;
-}
+export const Hello = React.memo( ({increment})=>{    
+    console.log('Hell0')
+    return (
+    <button onClick={increment}> 
+    Click
+    </button>);
+});

@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState , useEffect, useRef,useLayoutEffect} from 'react';
+import { useState , useEffect, useRef,useLayoutEffect,useCallback} from 'react';
 import { useForm } from './hooks/useForm';
 import { useFetch }from './hooks/useFetch';
+import { Hello } from './Hello';
+
 
 function App() {
 const inputRef = useRef();
@@ -10,6 +12,13 @@ const [count,setCount] = useState(10);
 const [value, handleForm] = useForm({email:'',password:''});
 const [data,loading] = useFetch(`http://numbersapi.com/${count}`);
 const focusEmail = useRef(0);
+const increment = useCallback(()=>{
+  setCount(c=>c+1)
+
+  console.log('counting output function ',count);
+},[setCount])
+
+
 useEffect(()=>{
   console.log('hey I rendered')
   return ()=>{
@@ -32,6 +41,12 @@ return (
       <p>{value.name}</p> and <p>{value.email}</p>
       <div>
         <h3>{loading?'...':data}</h3>
+      </div>
+
+      <div>
+        <h3>hello section</h3>
+        <Hello increment={increment}/>
+        <p>{count}</p>
       </div>
     </div>
   );
